@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YANDEX NEWS - Portal Berita Teknologi & Informasi Terkini</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset dan Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #FF0000;
+            --secondary-color: #000000;
+            --accent-color: #FFCC00;
+            --dark-color: #1A1A1A;
+            --light-color: #F8F8F8;
+            --gray-color: #666666;
+            --border-color: #E0E0E0;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light-color);
+            color: var(--secondary-color);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #d90000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #333;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Header */
+        .header-top {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .header-top-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-top-left {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        .header-top-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .header-top-link {
+            color: #ccc;
+            transition: color 0.3s;
+        }
+        
+        .header-top-link:hover {
+            color: white;
+        }
+        
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .language-selector i {
+            color: var(--accent-color);
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-main {
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 36px;
+            color: var(--primary-color);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text h1 {
+            font-size: 32px;
+            color: var(--secondary-color);
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+        
+        .logo-text span {
+            font-size: 14px;
+            color: var(--gray-color);
+            font-weight: 400;
+        }
+        
+        nav {
+            flex: 1;
+            margin: 0 40px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            gap: 35px;
+        }
+        
+        nav a {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--dark-color);
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .search-box input {
+            background: transparent;
+            border: none;
+            width: 200px;
+            outline: none;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .search-box i {
+            color: var(--gray-color);
+            cursor: pointer;
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .user-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #f5f5f5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .user-icon:hover {
+            background-color: #eaeaea;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--secondary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 60px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        /* Breaking News */
+        .breaking-news {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 0;
+            margin-bottom: 40px;
+        }
+        
+        .breaking-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .breaking-label {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        
+        .breaking-text {
+            flex: 1;
+            font-weight: 500;
+            font-size: 16px;
+        }
+        
+        /* News Grid */
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+            color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .main-news {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .news-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .news-card-large {
+            grid-column: span 2;
+        }
+        
+        .news-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .news-image-large {
+            height: 300px;
+        }
+        
+        .news-content {
+            padding: 25px;
+        }
+        
+        .news-category {
+            display: inline-block;
+            color: var(--primary-color);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+        
+        .news-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            color: var(--dark-color);
+        }
+        
+        .news-title-large {
+            font-size: 26px;
+        }
+        
+        .news-excerpt {
+            color: var(--gray-color);
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 14px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        /* News Sidebar */
+        .news-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .sidebar-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .sidebar-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .trending-list, .popular-list {
+            list-style: none;
+        }
+        
+        .trending-item, .popular-item {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .trending-item:last-child, .popular-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .trending-number {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+        
+        .trending-title, .popular-title {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+        
+        .trending-meta, .popular-meta {
+            font-size: 13px;
+            color: var(--gray-color);
+        }
+        
+        /* Technology Section */
+        .technology {
+            background-color: var(--light-color);
+            padding: 60px 0;
+            margin-bottom: 60px;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .tech-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tech-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .tech-content {
+            padding: 25px;
+        }
+        
+        .tech-category {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .tech-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        /* Weather & Services */
+        .services {
+            margin-bottom: 80px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            border-top: 4px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-top-color: var(--primary-color);
+        }
+        
+        .service-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+        
+        .service-card p {
+            font-size: 14px;
+            color: var(--gray-color);
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo h2 {
+            font-size: 28px;
+            color: white;
+        }
+        
+        .footer-logo span {
+            color: var(--primary-color);
+        }
+        
+        .footer-about p {
+            margin-bottom: 25px;
+            opacity: 0.8;
+            font-size: 15px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-contact i {
+            color: var(--primary-color);
+            margin-top: 3px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                display: none;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                gap: 15px;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .main-news {
+                grid-template-columns: 1fr;
+            }
+            
+            .news-card-large {
+                grid-column: span 1;
+            }
+            
+            .search-box input {
+                width: 150px;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h2 {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            nav {
+                order: 3;
+                width: 100%;
+                margin: 15px 0 0 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Top -->
+    <div class="header-top">
+        <div class="container">
+            <div class="header-top-content">
+                <div class="header-top-left">
+                    <a href="#" class="header-top-link">О компании</a>
+                    <a href="#" class="header-top-link">Реклама</a>
+                    <a href="#" class="header-top-link">Работа в Яндексе</a>
+                    <a href="#" class="header-top-link">Помощь</a>
+                </div>
+                
+                <div class="header-top-right">
+                    <div class="language-selector">
+                        <i class="fas fa-globe"></i>
+                        <span>Русский</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <a href="#" class="header-top-link">Войти</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Main -->
+    <header>
+        <div class="header-main">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo-container">
+                        <i class="fab fa-yandex-international logo-icon"></i>
+                        <div class="logo-text">
+                            <h1>YANDEX NEWS</h1>
+                            <span>Новости технологий и информации</span>
+                        </div>
+                    </div>
+                    
+                    <nav>
+                        <ul>
+                            <li><a href="#" class="active">Главная</a></li>
+                            <li><a href="#">Политика</a></li>
+                            <li><a href="#">Технологии</a></li>
+                            <li><a href="#">Бизнес</a></li>
+                            <li><a href="#">Спорт</a></li>
+                            <li><a href="#">Культура</a></li>
+                            <li><a href="#">Наука</a></li>
+                        </ul>
+                    </nav>
+                    
+                    <div class="header-actions">
+                        <div class="search-box">
+                            <input type="text" placeholder="Поиск новостей...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="user-actions">
+                            <div class="user-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div class="mobile-toggle">
+                            <i class="fas fa-bars"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breaking News -->
+    <section class="breaking-news">
+        <div class="container">
+            <div class="breaking-content">
+                <div class="breaking-label">СРОЧНЫЕ НОВОСТИ</div>
+                <div class="breaking-text">Роскосмос объявил о запуске новой ракеты "Амур" с многоразовой первой ступенью. Запуск запланирован на 2025 год.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">ЭКСКЛЮЗИВ</span>
+                <h2>Яндекс представляет новую нейросеть YandexGPT 3.0 с улучшенным пониманием контекста</h2>
+                <p>Компания Яндекс анонсировала новую версию своей языковой модели, которая показывает рекордные результаты в понимании сложных запросов и генерации текстов на русском языке.</p>
+                <a href="#" class="btn btn-primary">Читать полностью</a>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Обновление новостей</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">8500+</div>
+                        <div class="stat-label">Источников информации</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15М+</div>
+                        <div class="stat-label">Читателей ежедневно</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main News -->
+    <section class="main-news-section">
+        <div class="container">
+            <h2 class="section-title">Последние новости</h2>
+            <div class="news-grid">
+                <div class="main-news">
+                    <!-- Large News Card -->
+                    <div class="news-card news-card-large">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="AI Technology" class="news-image news-image-large">
+                        <div class="news-content">
+                            <span class="news-category">Технологии</span>
+                            <h3 class="news-title news-title-large">Искусственный интеллект в России: новые разработки и перспективы</h3>
+                            <p class="news-excerpt">Российские компании представили инновационные решения на основе ИИ для медицины, образования и промышленности на форуме "Цифровая индустрия промышленной России".</p>
+                            <div class="news-meta">
+                                <span><i class="far fa-clock"></i> 2 часа назад</span>
+                                <span><i class="far fa-eye"></i> 12.4K просмотров</span>
+                                <span><i class="far fa-comment"></i> 348 комментариев</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Regular News Card 1 -->
+                    <div class="news-card">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Economy" class="news-image">
+                        <div class="news-content">
+                            <span class="news-category">Экономика</span>
+                            <h3 class="news-title">Минэкономразвития повысило прогноз роста ВВП России на 2024 год</h3>
+                            <p class="news-excerpt">Ведомство ожидает рост экономики на 2,8% благодаря увеличению внутреннего спроса и инвестиций в инфраструктуру.</p>
+                            <div class="news-meta">
+                                <span><i class="far fa-clock"></i> 5 часов назад</span>
+                                <span><i class="far fa-eye"></i> 8.2K просмотров</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Regular News Card 2 -->
+                    <div class="news-card">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Space" class="news-image">
+                        <div class="news-content">
+                            <span class="news-category">Космос</span>
+                            <h3 class="news-title">Россия и Китай договорились о совместной лунной миссии</h3>
+                            <p class="news-excerpt">Страны планируют отправить совместную экспедицию на Луну к 2030 году для создания научной базы.</p>
+                            <div class="news-meta">
+                                <span><i class="far fa-clock"></i> 8 часов назад</span>
+                                <span><i class="far fa-eye"></i> 15.7K просмотров</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="news-sidebar">
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Популярное</h3>
+                        <ul class="popular-list">
+                            <li class="popular-item">
+                                <h4 class="popular-title">Новый закон о цифровых активах вступил в силу</h4>
+                                <div class="popular-meta">Сегодня • 24K просмотров</div>
+                            </li>
+                            <li class="popular-item">
+                                <h4 class="popular-title">Яндекс.Такси запускает беспилотные такси в Москве</h4>
+                                <div class="popular-meta">Вчера • 18K просмотров</div>
+                            </li>
+                            <li class="popular-item">
+                                <h4 class="popular-title">ЦБ РФ тестирует цифровой рубль в реальных транзакциях</h4>
+                                <div class="popular-meta">2 дня назад • 32K просмотров</div>
+                            </li>
+                            <li class="popular-item">
+                                <h4 class="popular-title">Сбер представил нового робота-консультанта для банков</h4>
+                                <div class="popular-meta">3 дня назад • 21K просмотров</div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Тренды</h3>
+                        <ul class="trending-list">
+                            <li class="trending-item">
+                                <span class="trending-number">1</span>
+                                <h4 class="trending-title">Кибербезопасность</h4>
+                                <div class="trending-meta">+245% поисков</div>
+                            </li>
+                            <li class="trending-item">
+                                <span class="trending-number">2</span>
+                                <h4 class="trending-title">Зеленые технологии</h4>
+                                <div class="trending-meta">+189% поисков</div>
+                            </li>
+                            <li class="trending-item">
+                                <span class="trending-number">3</span>
+                                <h4 class="trending-title">Квантовые вычисления</h4>
+                                <div class="trending-meta">+167% поисков</div>
+                            </li>
+                            <li class="trending-item">
+                                <span class="trending-number">4</span>
+                                <h4 class="trending-title">Метавселенные</h4>
+                                <div class="trending-meta">+142% поисков</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="technology">
+        <div class="container">
+            <h2 class="section-title">Технологии</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="AI" class="tech-image">
+                    <div class="tech-content">
+                        <span class="tech-category">Искусственный интеллект</span>
+                        <h3 class="tech-title">Яндекс разработал ИИ для диагностики заболеваний по снимкам</h3>
+                        <p class="news-excerpt">Нейросеть показывает точность 98% в обнаружении ранних стадий заболеваний на рентгеновских снимках.</p>
+                        <div class="news-meta">
+                            <span><i class="far fa-clock"></i> 1 день назад</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tech-card">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Blockchain" class="tech-image">
+                    <div class="tech-content">
+                        <span class="tech-category">Блокчейн</span>
+                        <h3 class="tech-title">ЦБ РФ запускает платформу для цифровых активов</h3>
+                        <p class="news-excerpt">Платформа позволит компаниям выпускать цифровые финансовые активы и проводить сделки с ними.</p>
+                        <div class="news-meta">
+                            <span><i class="far fa-clock"></i> 2 дня назад</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tech-card">
+                    <img src="https://images.unsplash.com/photo-1535378620166-273708d44e4c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Robotics" class="tech-image">
+                    <div class="tech-content">
+                        <span class="tech-category">Робототехника</span>
+                        <h3 class="tech-title">Робот Федор 2.0 будет помогать в строительстве космодрома</h3>
+                        <p class="news-excerpt">Усовершенствованный робот способен работать в экстремальных условиях и выполнять сложные задачи.</p>
+                        <div class="news-meta">
+                            <span><i class="far fa-clock"></i> 3 дня назад</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Сервисы Яндекса</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Поиск</h3>
+                    <p>Самый популярный поисковик в России с интеллектуальными ответами</p>
+                    <a href="#" class="btn btn-outline">Перейти</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Карты</h3>
+                    <p>Детальные карты с пробками, маршрутами и панорамами улиц</p>
+                    <a href="#" class="btn btn-outline">Перейти</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <h3>Погода</h3>
+                    <p>Точный прогноз погоды с искусственным интеллектом</p>
+                    <a href="#" class="btn btn-outline">Перейти</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3>Дзен</h3>
+                    <p>Персональная лента рекомендаций статей и видео</p>
+                    <a href="#" class="btn btn-outline">Перейти</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <h2>YANDEX <span>NEWS</span></h2>
+                    </div>
+                    <p>Крупнейший агрегатор новостей в России. Мы собираем новости из тысяч источников и предоставляем персонализированную ленту для каждого пользователя.</p>
+                    <div class="social-icons" style="display: flex; gap: 15px; margin-top: 20px;">
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-vk"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-telegram"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-odnoklassniki"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Разделы</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Главная</a></li>
+                        <li><a href="#">Политика</a></li>
+                        <li><a href="#">Экономика</a></li>
+                        <li><a href="#">Общество</a></li>
+                        <li><a href="#">Технологии</a></li>
+                        <li><a href="#">Спорт</a></li>
+                        <li><a href="#">Культура</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Сервисы</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Яндекс.Поиск</a></li>
+                        <li><a href="#">Яндекс.Карты</a></li>
+                        <li><a href="#">Яндекс.Погода</a></li>
+                        <li><a href="#">Яндекс.Дзен</a></li>
+                        <li><a href="#">Яндекс.Такси</a></li>
+                        <li><a href="#">Яндекс.Еда</a></li>
+                        <li><a href="#">Яндекс.Музыка</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul class="footer-links footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>ул. Льва Толстого, 16, Москва, Россия, 119021</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+7 (495) 739-70-00</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>news@yandex.ru</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Пн-Пт: 9:00-18:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 1997—2024 ООО «Яндекс». Лицензия на осуществление телематических услуг связи № 154994 от 09.11.2018</p>
+                <p style="margin-top: 10px;">При использовании материалов сайта ссылка обязательна.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', function() {
+            const nav = document.querySelector('nav ul');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Search functionality
+        document.querySelector('.search-box i').addEventListener('click', function() {
+            const query = document.querySelector('.search-box input').value;
+            if(query.trim()) {
+                alert(`Поиск новостей: "${query}". В реальной системе это перенаправит на страницу результатов поиска.`);
+            }
+        });
+        
+        // Search on enter key
+        document.querySelector('.search-box input').addEventListener('keypress', function(e) {
+            if(e.key === 'Enter') {
+                document.querySelector('.search-box i').click();
+            }
+        });
+        
+        // User icon click
+        document.querySelector('.user-icon').addEventListener('click', function() {
+            alert('Войдите в свою учетную запись Яндекс. В реальной системе это откроет форму входа.');
+        });
+        
+        // Language selector
+        document.querySelector('.language-selector').addEventListener('click', function() {
+            alert('Выбор языка. Доступные языки: Русский, English, Türkçe, Deutsch, Français');
+        });
+        
+        // Breaking news ticker simulation
+        const breakingTexts = [
+            "Роскосмос объявил о запуске новой ракеты 'Амур' с многоразовой первой ступенью. Запуск запланирован на 2025 год.",
+            "Яндекс запускает сервис доставки дронами в тестовом режиме в Москве.",
+            "ЦБ РФ повысил ключевую ставку на 1% для борьбы с инфляцией.",
+            "Новый закон о цифровой экономике вступает в силу с 1 апреля 2024 года."
+        ];
+        
+        let currentBreakingIndex = 0;
+        const breakingElement = document.querySelector('.breaking-text');
+        
+        // Change breaking news every 10 seconds
+        setInterval(() => {
+            currentBreakingIndex = (currentBreakingIndex + 1) % breakingTexts.length;
+            breakingElement.textContent = breakingTexts[currentBreakingIndex];
+            
+            // Add animation
+            breakingElement.style.opacity = '0.5';
+            setTimeout(() => {
+                breakingElement.style.opacity = '1';
+                breakingElement.style.transition = 'opacity 0.5s';
+            }, 300);
+        }, 10000);
+        
+        // Add hover effects to news cards
+        document.querySelectorAll('.news-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.05)';
+            });
+        });
+        
+        // Add hover effects to tech cards
+        document.querySelectorAll('.tech-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+                this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.05)';
+            });
+        });
+        
+        // Simulate real-time news updates
+        const updateNewsTimes = () => {
+            const timeElements = document.querySelectorAll('.news-meta span:nth-child(1)');
+            const times = ['только что', '2 часа назад', '5 часов назад', '8 часов назад', '1 день назад', '2 дня назад', '3 дня назад'];
+            
+            timeElements.forEach(el => {
+                const randomTime = times[Math.floor(Math.random() * times.length)];
+                el.innerHTML = `<i class="far fa-clock"></i> ${randomTime}`;
+            });
+        };
+        
+        // Update times every minute (simulation)
+        setInterval(updateNewsTimes, 60000);
+        
+        // Initialize with random times
+        updateNewsTimes();
+    </script>
+</body>
+</html>
